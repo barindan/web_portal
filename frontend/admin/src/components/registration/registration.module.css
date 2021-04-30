@@ -1,0 +1,23 @@
+.Container {
+    width: 280px;
+}
+
+.ButtonContainer {
+    text-align: center;
+}
+.Button {
+    padding: 8px 25px;
+    cursor: pointer;
+    background: #cee3fd;
+    border: 1px solid #FFF;
+    border-radius: 10px;
+}
+
+.InputWrapper {
+    margin-bottom: 10px;
+    max-height: 45px;
+}
+
+.Button:hover {
+    background: #85b9fa;
+}

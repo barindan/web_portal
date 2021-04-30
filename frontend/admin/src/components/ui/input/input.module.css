@@ -1,0 +1,48 @@
+input {
+    margin: 0;
+}
+
+.ContainerInput {
+    width: 100%;
+    max-height: 100px;
+}
+
+.Input {
+    padding: 23px 0 5px 14px;
+    outline: none;
+    border: 1px solid #939393;
+    box-sizing: border-box;
+    border-radius: 6px;
+    width: 100%;
+    max-height: 45px;
+
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.Label {
+    color: #939393;
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    transform: translateY(-1.9rem);
+    line-height: 17px;
+    transition: 0.5s;
+    margin-left: 14px;
+}
+
+.Input:focus + .Label,
+.Input:valid + .Label{
+     font-size: 12px;
+     line-height: 15px;
+     transform: translateY(-2.5rem);
+}
+
+.Input:hover {
+     background: #F4F4F4;
+}
+
+.Input:focus {
+    background: #FFF;
+}
