@@ -23,3 +23,14 @@
     max-height: 45px;
 }
 
+.Text{
+    opacity: 0;
+    color: red;
+    padding: 8px 0;
+    height: 25px;
+}
+
+.ErrorText{
+    opacity: 1;
+}
+

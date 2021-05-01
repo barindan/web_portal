@@ -21,3 +21,14 @@
 .Button:hover {
     background: #85b9fa;
 }
+
+.InvisibleErrorText {
+    opacity: 0;
+    color: red;
+    padding: 8px 0;
+    height: 25px;
+}
+
+.ErrorText {
+    opacity: 1;
+}
