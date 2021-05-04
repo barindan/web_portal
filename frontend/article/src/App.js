@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import PortalHeader from "./components/header";
+import Header from "./components/header/header";
 
 function App() {
   return (
       <section>
-        <PortalHeader />
-        <div>{"Hello!"}</div>
+        <Header />
       </section>
   );
 }

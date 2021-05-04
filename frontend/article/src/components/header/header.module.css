@@ -1,0 +1,36 @@
+.Wrapper {
+
+}
+
+.Title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    height: 40px;
+}
+
+.Entrance{
+
+}
+
+.WelcomeWrapper {
+
+}
+
+.Entry {
+    margin-right: 15px;
+}
+
+.Registration {
+    margin-right: 15px;
+}
+
+.ButtonWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
