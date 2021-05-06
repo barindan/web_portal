@@ -1,0 +1,18 @@
+.Wrapper {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.ArticleTitle {
+    width: 25%;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: 1px solid ;
+}
+
+.ArticleText {
+    margin-right: 10px;
+    width: 75%;
+    border: 1px solid;
+}

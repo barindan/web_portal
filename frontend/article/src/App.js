@@ -1,11 +1,13 @@
 import React from 'react';
-import './App.css';
+
 import Header from "./components/header/header";
+import Articles from "./components/article/Article";
+import ContentManager from "./components/contentManager/contentManager";
 
 function App() {
   return (
       <section>
-        <Header />
+        <ContentManager />
       </section>
   );
 }
