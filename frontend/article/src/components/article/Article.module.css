@@ -16,3 +16,11 @@
     width: 75%;
     border: 1px solid;
 }
+
+.Button {
+    color: green;
+}
+
+.CurrentButton {
+    color: red;
+}

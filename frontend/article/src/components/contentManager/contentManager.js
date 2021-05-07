@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 import Header from "../header/header";
 import Articles from "../article/Article";
 import CreateArticle from "../createArticle/CreateArticle";
+import UpdateArticle from "../updateArticle/UpdateArticle";
 
 
 
@@ -12,6 +13,9 @@ const ContentManager = () => {
         <Router>
             <div>
                 <Switch>
+                    <Route path="/update_article/:id">
+                        <UpdateArticle />
+                    </Route>
                     <Route path="/create_article">
                         <CreateArticle />
                     </Route>
