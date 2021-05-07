@@ -1,17 +1,22 @@
 .WrapperEditor {
     margin: 20px 80px;
     border-radius: 5px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.5);
     padding: 10px;
+    box-shadow: 0 0 8px rgba(133,185,250,1);
 }
 
 .Header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
     margin-bottom: 30px;
     text-align: center;
     font-weight: 500;
     font-size: 16px;
     line-height: 30px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    box-shadow: 0 0 8px rgba(133,185,250,1);
+    height: 40px;
 }
 
 .WrapperButton {
@@ -20,5 +25,15 @@
 }
 
 .Button {
+    background: rgba(133,185,250,0.2);
+    padding: 8px;
+    border-radius: 5px;
+    border:1px solid #85b9fa;
+    cursor: pointer;
+}
 
+.CancelButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 40px;
 }

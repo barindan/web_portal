@@ -44,19 +44,23 @@ class Welcome extends React.Component {
         }
         else if (this.state.isLogin){
             return (
-                <div>
-                    Вы вошли в систему как {this.state.username}
-                    <button onClick={this.onClickLogout}>Выйти</button>
+                <div className={ styles.UserInfoContainer }>
+                    <div className={ styles.UserInfo }>Вы вошли в систему как:&nbsp;
+                        <div className={styles.Username}>{this.state.username}</div>
+                    </div>
+                    <div className={ styles.LogoutContainer }>
+                        <button onClick={this.onClickLogout} className={ styles.Button }>Выйти</button>
+                    </div>
                 </div>
             );
         } else {
             return (
                 <div className={styles.ButtonWrapper}>
                     <div className={styles.Entry}>
-                        <button onClick={this.onClickLogin}>Вход</button>
+                        <button onClick={this.onClickLogin} className={styles.Button}>Вход</button>
                     </div>
                     <div className={styles.Registration}>
-                        <button onClick={this.onClickRegistration}>Регистрация</button>
+                        <button onClick={this.onClickRegistration} className={styles.Button}>Регистрация</button>
                     </div>
                 </div>
             );

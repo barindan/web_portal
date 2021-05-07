@@ -43,8 +43,8 @@ class CreateArticle extends React.Component{
             return (
                 <>
                     <div className={styles.Header}>Редактор создания статьи</div>
-                    <div>
-                        <button onClick={this.onClickCancel}>Отмена</button>
+                    <div className={ styles.CancelButtonContainer}>
+                        <button onClick={this.onClickCancel} className={styles.Button}>Отмена</button>
                     </div>
                     <div className={ styles.WrapperEditor }>
                         <EditorJS

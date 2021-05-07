@@ -9,19 +9,16 @@ import styles from './Article.module.css';
 
 
 const EditorArticle = (props) => {
-    const onClick = (e) => {
-        const id = props.id;
-        window.location.href="http://localhost:3002/update_article/id="+id;
-    }
     return (
-        <>
-            <EditorJS
-                tools={EDITOR_JS_TOOLS}
-                data={props.data}
-                readOnly={true}
-            />
-            <button onClick={onClick}>Изменить статью</button>
-        </>
+        <div className={styles.ArticleWrapper }>
+            <div className={ styles.Article }>
+                <EditorJS
+                    tools={EDITOR_JS_TOOLS}
+                    data={props.data}
+                    readOnly={true}
+                />
+            </div>
+        </div>
     );
 }
 
@@ -96,25 +93,46 @@ class Articles extends React.Component{
         }
     }
 
+     onClickUpdateArticle = () => {
+        const id = this.state.idArticle;
+        window.location.href="http://localhost:3002/update_article/id="+id;
+    }
+
     render() {
         return (
             <div className={ styles.Wrapper }>
                 <div className={ styles.ArticleTitle }>
-                    <div><button onClick={this.onClickCreateArticle}>Добавить статью</button></div>
+                    <div className={ styles.MenuHeaderContainer }>
+                        <div className={ styles.HeaderContent }>
+                            <div className={styles.MenuHeaderText}>
+                                Список статей:
+                            </div>
+                            <div className={ styles.MenuHeaderButton}>
+                                <button onClick={this.onClickCreateArticle} className={ styles.ActionButton }>Добавить статью</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={ styles.ArticleTitleWrapper }>
                     {this.state.titles.map((value, index) => {
                         const classNameButton = classNames(styles.Button, {[styles.CurrentButton]:value===this.state.currentTitle});
                         return(
-                            <div key={index}>
+                            <div key={index} className={ styles.TitleContainer }>
                                 <button onClick={this.onClickTitle} className={ classNameButton }>{value}</button>
                             </div>
                         );
                     })}
+                    </div>
                 </div>
                 <div className={ styles.ArticleText }>
-                    <div>
-                        <button onClick={ this.onDeleteArticle }>Удалить статью</button>
+                    <div className={ styles.ActionButtonContainer }>
+                        <div className={ styles.UpdateButtonContainer }>
+                            <button onClick={this.onClickUpdateArticle} className={ styles.ActionButton }>Изменить статью</button>
+                        </div>
+                        <div className={ styles.DeleteButtonContainer }>
+                            <button onClick={ this.onDeleteArticle } className={ styles.ActionButton }>Удалить статью</button>
+                        </div>
                     </div>
-                    { this.state.isLoadingArticle? <EditorArticle data={this.state.article} id={this.state.idArticle}/> : ''}
+                    { this.state.isLoadingArticle? <EditorArticle data={this.state.article} /> : ''}
                 </div>
             </div>
         );

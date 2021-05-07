@@ -5,6 +5,8 @@ import EditorJS from "react-editor-js";
 import { EDITOR_JS_TOOLS} from "../../constants";
 import { getArticleById, updateArticle, checkLogin } from "../../API";
 
+import styles from "./UpdateArticle.module.css";
+
 
 class UpdateArticle extends React.Component{
     constructor(props) {
@@ -48,22 +50,26 @@ class UpdateArticle extends React.Component{
             return "Loading..."
         }else if(this.state.isLogin === true){
             return(
-                <>
-                    <div>Update article</div>
-                    <div>ID - {this.state.idArticle}</div>
-                    <div>
-                        {console.log(this.props.idArticle)}
-                        <button onClick={this.onClickUpdate.bind(this)}>Сохранить изменения</button>
+                <div className={styles.Wrapper}>
+                    <div className={ styles.Title }>
+                        Редактирование статьи
                     </div>
-                    <div>
-                        <button onClick={this.onClickCancel}>Отмена</button>
+                    <div className={ styles.ActionButtonContainer}>
+                        <div className={ styles.CancelButtonContainer}>
+                            <button onClick={this.onClickCancel} className={ styles.Button }>Отмена</button>
+                        </div>
                     </div>
-                    {this.state.isLoading? <EditorJS
-                        tools={EDITOR_JS_TOOLS}
-                        data={this.state.article}
-                        instanceRef={instance => this.editorInstance = instance}
-                        /> : ''}
-                </>
+                    <div className={ styles.EditorArticle }>
+                        {this.state.isLoading? <EditorJS
+                            tools={EDITOR_JS_TOOLS}
+                            data={this.state.article}
+                            instanceRef={instance => this.editorInstance = instance}
+                            /> : ''}
+                        <div className={ styles.SaveButtonContainer }>
+                            <button onClick={this.onClickUpdate.bind(this)} className={styles.Button}>Сохранить изменения</button>
+                        </div>
+                    </div>
+                </div>
             );
         }else {
             return this.redirectLogin();

@@ -19,3 +19,6 @@ code {
     monospace;
 }
 
+button {
+  outline: none;
+}

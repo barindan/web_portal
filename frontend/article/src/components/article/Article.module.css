@@ -1,26 +1,101 @@
 .Wrapper {
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     flex-direction: row;
+    padding-bottom: 20px;
 }
 
 .ArticleTitle {
-    width: 25%;
-    margin-right: 10px;
-    margin-left: 10px;
-    border: 1px solid ;
+    box-shadow: 0 0 8px rgba(133,185,250,1);
+    border-radius: 5px;
+    width: 23%;
+    margin-right: 15px;
+    margin-left: 15px;
+    align-self: flex-start;
+}
+
+.MenuHeaderContainer {
+    border-bottom: 3px double #85b9fa;
+}
+
+.HeaderContent {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.MenuHeaderButton {
+    margin-left: auto;
+}
+
+.ActionButton {
+    background: rgba(133,185,250,0.2);
+    padding: 8px;
+    border-radius: 5px;
+    border:1px solid #85b9fa;
+    cursor: pointer;
+}
+
+.MenuHeaderText {
+
+}
+
+.ArticleTitleWrapper{
+
 }
 
 .ArticleText {
-    margin-right: 10px;
+    box-shadow: 0 0 8px rgba(133,185,250,1);
+    margin-right: 15px;
     width: 75%;
-    border: 1px solid;
+    border-radius: 5px;
+}
+
+.TitleContainer {
+    padding: 10px;
+    border-bottom: 1px solid #85b9fa;
+}
+
+.TitleContainer:last-of-type {
+    border: none;
 }
 
 .Button {
-    color: green;
+    background: #FFFFFF;
+    cursor: pointer;
+    padding: 8px;
+    width: 100%;
+    border: 1px solid rgba(133,185,250,0.5);
+    border-radius: 5px;
 }
 
 .CurrentButton {
-    color: red;
+    background: rgba(133,185,250,0.2);
+}
+
+.Button:hover {
+    box-shadow: 0 0 5px rgba(133,185,250,1);
+    border-radius: 5px;
+}
+
+.ActionButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.DeleteButtonContainer {
+
+}
+
+.UpdateButtonContainer {
+    margin-right: 15px;
+}
+
+.ArticleWrapper {
+
+}
+
+.Article {
+
 }

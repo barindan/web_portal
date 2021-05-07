@@ -1,0 +1,43 @@
+.Wrapper {
+    padding-bottom: 30px;
+}
+
+.Title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    height: 40px;
+    font-size: 17px;
+    font-weight: 500;
+    box-shadow: 0 0 5px rgba(133,185,250,1);
+}
+
+.ActionButtonContainer{
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.SaveButtonContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.Button {
+    background: rgba(133,185,250,0.2);
+    padding: 8px;
+    border-radius: 5px;
+    border:1px solid #85b9fa;
+    cursor: pointer;
+}
+.CancelButtonContainer {
+    margin-right: 30px;
+}
+
+.EditorArticle {
+    margin: 25px 40px 0;
+    box-shadow: 0 0 5px rgba(133,185,250,1);
+    border-radius: 5px;
+    padding: 5px 25px 30px;
+}
