@@ -1,16 +1,13 @@
-import React, {useMemo, useState} from 'react';
+import React, {useState} from 'react';
 import classNames from "classnames";
 
-import uniqueId from 'lodash/uniqueId'
 import { loginRequest } from "../../API";
+import Input from "../ui/input/input";
 
 import styles from './login.module.css';
-import stylesInput from '../ui/input/input.module.css'
 
 
 const Login = () => {
-    const inputIdLogin = useMemo(() => uniqueId('input-'), []);
-    const inputIdPass = useMemo(() => uniqueId('input-'), []);
     const [login, setLogin] = useState('');
     const [pass, setPass] = useState('');
 
@@ -43,30 +40,21 @@ const Login = () => {
         }
     }
 
-    // if(success){
-        // document.location.href = "http://localhost:3002";
-    // }else{
+    if(success){
+        document.location.href = "http://localhost:3002";
+    }else{
         return (
             <div className={ styles.Container }>
-                <div className={ styles.ContainerInput }>
-                    <input
-                        className={stylesInput.Input}
-                        id={inputIdLogin}
-                        onInput={ (e) => {onInput(e,setLogin)} }
-                        required
-                    />
-                    <label className={stylesInput.Label} htmlFor={ inputIdLogin }>Логин*</label>
-                </div>
-                <div className={ styles.ContainerInput}>
-                    <input
-                        className={stylesInput.Input}
-                        id={inputIdPass}
-                        onInput={(e) => {onInput(e, setPass)}}
-                        type='password'
-                        required
-                    />
-                    <label className={stylesInput.Label} htmlFor={ inputIdPass }>Пароль*</label>
-                </div>
+                <Input
+                    inputType="text"
+                    labelText="Логин*"
+                    onInput={(e)=>{onInput(e, setLogin)}}
+                />
+                <Input
+                    inputType="password"
+                    labelText="Пароль*"
+                    onInput={(e)=>{onInput(e, setPass)}}
+                />
                 <div className={ styles.ButtonContainer }>
                     <div className={ classNameErrorText }>
                         {textError}
@@ -79,7 +67,7 @@ const Login = () => {
                 </div>
             </div>
         );
-    // }
+    }
 }
 
 export default Login;

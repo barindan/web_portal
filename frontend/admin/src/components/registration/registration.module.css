@@ -13,11 +13,6 @@
     border-radius: 10px;
 }
 
-.InputWrapper {
-    margin-bottom: 10px;
-    max-height: 45px;
-}
-
 .Button:hover {
     background: #85b9fa;
 }

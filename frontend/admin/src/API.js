@@ -11,7 +11,7 @@ export const loginRequest = async (login, password) => {
                   login: login,
                   password: password,
           }),
-          // credentials: "include",
+          credentials: "include",
     };
     const res = await fetch(API_METHODS.LOGIN(), requestOptions);
     const response = await res.json();
@@ -36,7 +36,7 @@ export const registrationRequest = async (name,surname,login,password) => {
                   login: login,
                   password: password,
           }),
-          // credentials: "include",
+          credentials: "include",
     };
     const res = await fetch(API_METHODS.REGISTRATION(), requestOptions);
     const response = await res.json();
@@ -46,4 +46,22 @@ export const registrationRequest = async (name,surname,login,password) => {
     return {"success": response.success,
             "error_code": response.error_code,
             };
+}
+
+
+export const checkLogin = async () => {
+    const requestOptions = {
+        method: 'GET',
+        headers: {
+            "Content-Type":"application/json",
+        },
+        credentials: "include"
+    }
+    const res = await fetch(API_METHODS.CHECK_LOGIN(), requestOptions);
+    const response = await res.json();
+    if (response.success){
+        return {"success": true, "user": response.user};
+    }else{
+        return {"success": false};
+    }
 }

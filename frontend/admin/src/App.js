@@ -1,15 +1,28 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import LoginManager from "./components/loginManager/LoginManager";
-import styles from "./App.css"
+import {LoginModule, RegistrationModule} from "./components/loginManager/LoginManager";
+
+import "./index.css"
 
 
 
 function App() {
   return (
-    <>
-        <LoginManager />
-    </>
+      <>
+          <Router>
+              <div className="Wrapper">
+                  <Switch>
+                      <Route path="/login">
+                          <LoginModule />
+                      </Route>
+                      <Route path="/registration">
+                          <RegistrationModule />
+                      </Route>
+                  </Switch>
+              </div>
+          </Router>
+      </>
   );
 }
 

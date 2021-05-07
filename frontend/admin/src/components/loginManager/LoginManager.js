@@ -3,14 +3,33 @@ import React, {useState} from 'react';
 import Login from "../login/login";
 import Registration from "../registration/registration";
 
+import { checkLogin } from "../../API";
+
 import styles from './LoginManager.module.css';
 
 
-const LoginManager = () => {
-    const [isLogin, setIsLogin] = useState(true);
-    const onClick = () => {setIsLogin(!isLogin)};
+export const LoginModule = () => {
+    const onClick = () => {
+        window.location.href = "http://localhost:3001/registration"
+    }
 
-    if(isLogin){
+    const [isLogin, setIsLogin] = useState(null);
+
+    const redirectToArticle = () => {window.location.href = "http://localhost:3002/";}
+
+    checkLogin().then(value => {
+        if (value.success){
+            setIsLogin(true);
+        }else{
+            setIsLogin(false);
+        }
+    })
+
+    if (isLogin===null){
+        return '';
+    }else if(isLogin === true){
+        return redirectToArticle();
+    }else {
         return (
             <div className={ styles.Container }>
                 <div className={ styles.Content}>
@@ -23,7 +42,31 @@ const LoginManager = () => {
                 <Login />
                 </div>
             </div>
-          );
+        );
+    }
+}
+
+export const RegistrationModule = () => {
+    const onClick = () => {
+        window.location.href = "http://localhost:3001/login"
+    }
+
+    const [isLogin, setIsLogin] = useState(null);
+
+    const redirectToArticle = () => {window.location.href = "http://localhost:3002/";}
+
+    checkLogin().then(value => {
+        if (value.success){
+            setIsLogin(true);
+        }else{
+            setIsLogin(false);
+        }
+    })
+
+    if(isLogin === null){
+        return ' ';
+    }else if (isLogin === true){
+        return redirectToArticle();
     }else{
         return (
             <div className={ styles.Container }>
@@ -41,4 +84,3 @@ const LoginManager = () => {
     }
 }
 
-export default LoginManager;

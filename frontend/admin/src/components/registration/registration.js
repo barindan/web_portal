@@ -4,7 +4,7 @@ import classNames from "classnames";
 import {registrationRequest} from "../../API";
 
 import styles from './registration.module.css';
-import stylesInput from '../ui/input/input.module.css'
+import Input from "../ui/input/input";
 
 
 const Registration = () => {
@@ -42,57 +42,45 @@ const Registration = () => {
         }
     }
 
-    return (
-        <div className={ styles.Container }>
-            <div >
-                <div className={ styles.InputWrapper}>
-                    <input
-                        className={stylesInput.Input}
-                        onInput={(e)=>{onInput(e,setName)}}
-                        id="name"
-                        required
+    if (success){
+        return window.location.href = "http://localhost:3002"
+    }else{
+        return (
+            <div className={ styles.Container }>
+                <div >
+                    <Input
+                        inputType="text"
+                        labelText="Имя*"
+                        onInput={(e)=>{onInput(e, setName)}}
                     />
-                    <label className={ stylesInput.Label} htmlFor="name">Имя*</label>
+                    <Input
+                        inputType="text"
+                        labelText="Фамилия*"
+                        onInput={(e)=>{onInput(e, setSurname)}}
+                    />
+                    <Input
+                        inputType="text"
+                        labelText="Логин*"
+                        onInput={(e)=>{onInput(e, setLogin)}}
+                    />
+                    <Input
+                        inputType="password"
+                        labelText="Пароль*"
+                        onInput={(e)=>{onInput(e, setPassword)}}
+                    />
                 </div>
-                <div className={styles.InputWrapper}>
-                    <input
-                        className={stylesInput.Input}
-                        onInput={(e)=>{onInput(e,setSurname)}}
-                        id="surname"
-                        required
-                    />
-                    <label className={ stylesInput.Label} htmlFor="surname">Фамилия*</label>
-                </div>
-                <div className={ styles.InputWrapper}>
-                    <input
-                        className={stylesInput.Input}
-                        onInput={(e)=>{onInput(e,setLogin)}}
-                        id="login"
-                        required
-                    />
-                    <label className={ stylesInput.Label} htmlFor="login">Логин*</label>
-                </div>
-                <div className={ styles.InputWrapper}>
-                    <input
-                        className={stylesInput.Input}
-                        onInput={(e)=>{onInput(e,setPassword)}}
-                        id="pass"
-                        required
-                    />
-                    <label className={ stylesInput.Label} htmlFor="pass">Пароль*</label>
+                <div className={ styles.ButtonContainer }>
+                    <div className={ classNameErrorText}>
+                        { errorText }
+                    </div>
+                    <button
+                        className={ styles.Button }
+                        onClick={ onClick }
+                    >Регистрация</button>
                 </div>
             </div>
-            <div className={ styles.ButtonContainer }>
-                <div className={ classNameErrorText}>
-                    { errorText }
-                </div>
-                <button
-                    className={ styles.Button }
-                    onClick={ onClick }
-                >Регистрация</button>
-            </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default Registration;
