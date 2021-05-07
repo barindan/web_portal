@@ -20,34 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f96beaae-d70e-49dc-a338-8d70b57ba89e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/article/src/components/updateArticle/UpdateArticle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/components/login/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/components/login/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/components/login/login.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/components/login/login.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/components/loginManager/LoginManager.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/components/loginManager/LoginManager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/components/registration/registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/components/registration/registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/components/registration/registration.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/components/registration/registration.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/components/ui/input/input.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/components/ui/input/input.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/components/ui/input/input.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/components/ui/input/input.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/src/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/src/API.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/src/components/article/Article.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/src/components/article/Article.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/src/components/article/Article.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/src/components/article/Article.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/src/components/contentManager/contentManager.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/src/components/createArticle/CreateArticle.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/src/components/createArticle/CreateArticle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/src/components/editor/editor.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/src/components/header/header.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/src/components/header/header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/article/src/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/article/src/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
