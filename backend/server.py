@@ -1,5 +1,6 @@
+import json
+from fastapi.staticfiles import StaticFiles
 import psycopg2
-from psycopg2 import sql
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.requests import Request
@@ -8,6 +9,9 @@ from starlette.middleware.sessions import SessionMiddleware
 from config import password_postgres
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 origins = [
     'http://localhost:3001',
     'http://localhost:3002',
@@ -38,7 +42,8 @@ async def login_web_portal(request: Request):
             print(data)
             login = data.get('login')
             password = data.get('password')
-            cursor.execute(f"SELECT * FROM users WHERE login='{login}'")
+            cursor.execute("SELECT * FROM users WHERE login=%s", (login,))
+            conn.commit()
             data_user = cursor.fetchone()
             if data_user:
                 if data_user[2] == password:
@@ -64,19 +69,17 @@ async def auth(request: Request):
             data = await request.json()
             login = data.get('login')
             print(data)
-            cursor.execute(f"SELECT * FROM users WHERE login='{login}'")
+            cursor.execute("SELECT * FROM users WHERE login=%s", (login,))
+            conn.commit()
             user_info = cursor.fetchone()
             if user_info:
                 return {'success': False,
                         'error_code': 'login is busy',
                         }
-            values = [
-                (f'{login}', f'{data.get("password")}', f'{data.get("name")}', f'{data.get("surname")}')
-            ]
-            insert = sql.SQL('INSERT INTO users (login, password, name, surname) VALUES {}').format(
-                sql.SQL(',').join(map(sql.Literal, values))
-            )
-            cursor.execute(insert)
+
+            cursor.execute(
+                """INSERT INTO users (login, password, name, surname) VALUES (%s, %s, %s, %s)""",
+                (login, data.get("password"), data.get("name"), data.get("surname")))
             conn.commit()
 
             cursor.execute("SELECT * from users")
@@ -92,12 +95,16 @@ async def auth(request: Request):
 async def get_article_id(request: Request):
     data = await request.json()
     title = data.get("title")
-    print(title)
+    print(f"'{title}'")
     if title:
         with conn.cursor() as cursor:
-            cursor.execute(f"SELECT id FROM articles WHERE title='{title}'")
-            article_id = cursor.fetchone()
-            print(article_id[0])
+            cursor.execute("SELECT id FROM articles WHERE title=%s", (title,))
+            article_id = cursor.fetchall()
+            conn.commit()
+
+            cursor.execute("SELECT title FROM articles")
+            record = cursor.fetchall()
+            print("Результат", record)
             if article_id:
                 return {"success": True, "article_id": article_id[0]}
             else:
@@ -110,6 +117,7 @@ async def get_article_id(request: Request):
 async def get_title():
     with conn.cursor() as cursor:
         cursor.execute("SELECT title FROM articles ORDER BY id")
+        conn.commit()
         title = []
         for row in cursor:
             title.append(row[0])
@@ -128,7 +136,8 @@ async def get_article(request: Request):
         return {"success": False, "error_code": "bad request"}
     if title:
         with conn.cursor() as cursor:
-            cursor.execute(f"SELECT article FROM articles WHERE title='{title}'")
+            cursor.execute("SELECT article FROM articles WHERE title=%s", (title,))
+            conn.commit()
             article = cursor.fetchone()
             print(article)
             if article:
@@ -144,7 +153,8 @@ async def get_article_by_id(request: Request):
     id_article = data.get('idArticle')
     if id_article:
         with conn.cursor() as cursor:
-            cursor.execute(f"SELECT article FROM articles WHERE id='{id_article}'")
+            cursor.execute("SELECT article FROM articles WHERE id=%s", (id_article,))
+            conn.commit()
             article = cursor.fetchone()
             print(article[0])
             if article:
@@ -162,18 +172,17 @@ async def add_article(request: Request):
     if not user:
         return {"success": False, "is_login": False}
     data = await request.json()
+    print(data)
     article = data.get('outputData')
     print(article)
     if article:
         title = ''
         for block in article.get('blocks'):
             if block.get('type') == 'header':
-                title = block.get('data').get('text')
+                title = block.get('data').get('text').replace("&nbsp;", "").strip(" ")
         print(title + " It is title")
-        article_str = str(article).replace("'", '"')
-        print(article_str)
         with conn.cursor() as cursor:
-            cursor.execute(f"INSERT INTO articles (title, article) VALUES ('{title}','{article_str}')")
+            cursor.execute("INSERT INTO articles (title, article) VALUES (%s, %s)", (title, json.dumps(article)))
             conn.commit()
 
             cursor.execute("SELECT * from articles")
@@ -198,10 +207,11 @@ async def update_article(request: Request):
         title = ''
         for block in article.get('blocks'):
             if block.get('type') == 'header':
-                title = block.get('data').get('text')
-        article_text = str(article).replace("'", '"')
+                title = block.get('data').get('text').replace("&nbsp;", "").strip(" ")
+
         with conn.cursor() as cursor:
-            cursor.execute(f"UPDATE articles SET article='{article_text}', title='{title}' WHERE id={article_id}")
+            cursor.execute(
+                """UPDATE articles SET article=%s, title=%s WHERE id=%s""", (json.dumps(article), title, article_id))
             conn.commit()
 
             cursor.execute("SELECT * from articles")
@@ -242,7 +252,7 @@ async def delete_article(request: Request):
     article_id = data.get("articleId")
     if article_id:
         with conn.cursor() as cursor:
-            cursor.execute(f"DELETE FROM articles WHERE id='{article_id}'")
+            cursor.execute("DELETE FROM articles WHERE id=%s", (article_id,))
             conn.commit()
 
             cursor.execute("SELECT * from articles")
@@ -250,3 +260,27 @@ async def delete_article(request: Request):
             print("Результат", record)
             return {"success": True, "isLogin": True}
     return {"success": False, "isLogin": True, "error_code": "no id article"}
+
+
+@app.post("/upload_file")
+async def upload_file(request: Request):
+    form = await request.form()
+    filename = form["image"].filename
+    img = await form['image'].read()
+    path_file = "./static/" + filename
+    with open(path_file, 'wb') as local_file:
+        local_file.write(img)
+    print(path_file)
+    url = "http://localhost:8000/static/" + filename
+    return {
+        "success": 1,
+        "file": {
+            "url": url,
+        }
+    }
+
+
+@app.post("fetch_url")
+async def fetch_url(request: Request):
+    print("[2]")
+    print(request)

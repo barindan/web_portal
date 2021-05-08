@@ -17,7 +17,7 @@ class UpdateArticle extends React.Component{
 
         getArticleById(idArticle).then(value => {
             if(value.success){
-                this.setState({article: JSON.parse(value.article), isLoading:true})
+                this.setState({article: value.article, isLoading:true})
             }
         })
 

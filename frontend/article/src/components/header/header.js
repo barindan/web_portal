@@ -3,6 +3,8 @@ import React from 'react';
 import { checkLogin, logout } from "../../API";
 
 import styles from './header.module.css';
+import mpeiLogo from '../../static/mpei.png'
+import vmssLogo from '../../static/vmss.png'
 
 
 class Welcome extends React.Component {
@@ -76,7 +78,13 @@ class Header extends React.Component{
                     <Welcome />
                 </div>
                 <div className={ styles.Title}>
-                    Объектно-ориентированное программирование в PHP. Примеры
+                    <div>
+                        <img src={ mpeiLogo } alt="MPEI" className={ styles.Image }/>
+                    </div>
+                    <div>Объектно-ориентированное программирование в PHP. Примеры</div>
+                    <div>
+                        <img src={ vmssLogo } alt="VMSS" className={ styles.Image }/>
+                    </div>
                 </div>
             </div>
         );

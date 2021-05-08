@@ -38,7 +38,7 @@ class Articles extends React.Component{
                 this.setState({titles: value.titles, currentTitle: value.titles[0]});
                 getArticle(this.state.titles[0]).then(res => {
                     if(res.success){
-                        this.setState({article: JSON.parse(res.article), isLoadingArticle: true,})}
+                        this.setState({article: res.article, isLoadingArticle: true,})}
                     else{
                         this.setState({article: res.error_code, isLoadingArticle: true})
                     }
@@ -57,6 +57,7 @@ class Articles extends React.Component{
 
 
     onClickTitle = (e) => {
+        console.log(e);
         const newTitle = e.target.innerText;
         if (newTitle !== this.state.currentTitle){
             this.setState({currentTitle: newTitle, isLoadingArticle: false});
@@ -67,7 +68,7 @@ class Articles extends React.Component{
             });
             getArticle(newTitle).then(value => {
                 if(value.success){
-                    this.setState({article: JSON.parse(value.article), isLoadingArticle: true})
+                    this.setState({article: value.article, isLoadingArticle: true})
                 }else {
                     this.setState({article: value.error_code, isLoadingArticle: true})
                 }

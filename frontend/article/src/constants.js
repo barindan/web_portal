@@ -4,7 +4,7 @@ import List from "@editorjs/list";
 import Warning from "@editorjs/warning";
 import Code from "@editorjs/code";
 import LinkTool from "@editorjs/link";
-import Image from "@editorjs/image";
+import ImageTool from "@editorjs/image";
 import Raw from "@editorjs/raw";
 import Header from "@editorjs/header";
 import Quote from "@editorjs/quote";
@@ -23,7 +23,15 @@ export const EDITOR_JS_TOOLS = {
   warning: Warning,
   code: Code,
   linkTool: LinkTool,
-  image: Image,
+  image: {
+    class: ImageTool,
+    config: {
+      endpoints: {
+        byFile: 'http://localhost:8000/upload_file',
+        byUrl: 'http://localhost:8000/fetch_url',
+      }
+    }
+  },
   raw: Raw,
   header: Header,
   quote: Quote,
