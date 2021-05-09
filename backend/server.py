@@ -6,16 +6,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.requests import Request
 from starlette.middleware.sessions import SessionMiddleware
 
-from config import password_postgres
+from config import *
 
 app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 origins = [
-    'http://localhost:3001',
-    'http://localhost:3002',
+    LOGIN_FRONTEND_HOST,
+    ARTICLE_FRONTEND_HOST,
            ]
+
 app.add_middleware(CORSMiddleware,
                    allow_origins=origins,
                    allow_credentials=True,
@@ -24,11 +25,11 @@ app.add_middleware(CORSMiddleware,
 
 app.add_middleware(SessionMiddleware, secret_key="!secret")
 
-conn = psycopg2.connect(user="barindan",
+conn = psycopg2.connect(user=user_postgres,
                         password=password_postgres,
-                        host="127.0.0.1",
-                        port="5432",
-                        database="web_portal")
+                        host=host,
+                        port=port,
+                        database=database)
 
 
 @app.post("/login")
@@ -82,9 +83,6 @@ async def auth(request: Request):
                 (login, data.get("password"), data.get("name"), data.get("surname")))
             conn.commit()
 
-            cursor.execute("SELECT * from users")
-            record = cursor.fetchall()
-            print("Результат", record)
             user = {"username": login, "name": data.get("name"), "surname": data.get("surname")}
             request.session['user'] = user
             print(request.session.get("user"))
@@ -102,9 +100,6 @@ async def get_article_id(request: Request):
             article_id = cursor.fetchall()
             conn.commit()
 
-            cursor.execute("SELECT title FROM articles")
-            record = cursor.fetchall()
-            print("Результат", record)
             if article_id:
                 return {"success": True, "article_id": article_id[0]}
             else:
@@ -185,9 +180,6 @@ async def add_article(request: Request):
             cursor.execute("INSERT INTO articles (title, article) VALUES (%s, %s)", (title, json.dumps(article)))
             conn.commit()
 
-            cursor.execute("SELECT * from articles")
-            record = cursor.fetchall()
-            print("Результат", record)
         return {"success": True, "is_login": True}
     else:
         return {"success": False, "is_login": True}
@@ -213,10 +205,6 @@ async def update_article(request: Request):
             cursor.execute(
                 """UPDATE articles SET article=%s, title=%s WHERE id=%s""", (json.dumps(article), title, article_id))
             conn.commit()
-
-            cursor.execute("SELECT * from articles")
-            record = cursor.fetchall()
-            print("Результат", record)
         return {"success": True, "is_login": True}
     else:
         return {"success": False, "is_login": True}
@@ -250,14 +238,12 @@ async def delete_article(request: Request):
         return {"success": False, "isLogin": False}
     data = await request.json()
     article_id = data.get("articleId")
+    print("DELETE ARTICLE")
+    print(article_id)
     if article_id:
         with conn.cursor() as cursor:
-            cursor.execute("DELETE FROM articles WHERE id=%s", (article_id,))
+            cursor.execute("DELETE FROM articles WHERE id=%s", (article_id[0],))
             conn.commit()
-
-            cursor.execute("SELECT * from articles")
-            record = cursor.fetchall()
-            print("Результат", record)
             return {"success": True, "isLogin": True}
     return {"success": False, "isLogin": True, "error_code": "no id article"}
 
